@@ -5,6 +5,10 @@ Obrazovka* obrazoovka = Obrazovka::instance();
 
 Map::Map()
 {
+	for (int i = 0;i<11;i++)
+	{
+		startingPos[i] = 0;
+	}
 	texture = new Texture();
 	for (int i = 0;i<MAP_SIZE*MAP_SIZE;i++)
 	{
@@ -21,7 +25,7 @@ Map::Map()
 	map_w = 12;
 	map_size = map_h * map_w ;
 
-	initX = initY = 0;
+	initX = initY = addedSize = 0;
 }
 
 Map::Map(const char*fn)
@@ -271,9 +275,15 @@ void Map::addMap(Map* map)
 {
 	for (int i = 0 ; i < map->map_h * map->map_w ; i++)
 	{
+		for (int num = 0; num < 11 ; num++)
+			if (map->startingPos[num] != 0)
+			{
+				startingPos[num] = map->startingPos[num] + addedSize;
+			}
 		auto *t = map->tiles[i];
 		tile.push_back(t);
 	}
+	addedSize += map->map_h * map->map_w;
 }
 
 void Map::setSize(int map_w, int map_h)

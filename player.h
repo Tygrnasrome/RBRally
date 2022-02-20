@@ -3,6 +3,7 @@
 
 #include "grafika.h"
 #include "math.h"
+#include "map.h"
 
 class Player
 {
@@ -12,9 +13,12 @@ public:
 
 	void draw();
 	void update(int x, int y);
-	void move();
+	void move(int move, Map *map);
 	void rotate();
 	void shoot();
+
+	void testWallCollision(int move, Map *map);
+	void testMapEnd(int move, Map *map);
 
 	typedef enum{
 		NORTH,
@@ -24,6 +28,9 @@ public:
 
 	}Facing;
 	Facing facing;
+
+	bool dead = false;
+	bool interrupted = false;
 };
 
 #endif // PLAYER_H

@@ -25,7 +25,7 @@ public:
 	void addMap(Map* map);
 	void delMap();
 	void setSize(int map_w, int map_h);
-	int map_w, map_h, map_size, x, y, initX, initY;
+	int map_w, map_h, map_size, x, y, initX, initY, addedSize;
 	int startingPos[12];
 	std::list<Map*> map;
 	std::array<Tile*,MAP_SIZE*MAP_SIZE> tiles;
