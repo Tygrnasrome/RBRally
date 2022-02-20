@@ -49,7 +49,15 @@ void Game::update()
 		for(auto t = map->tile.begin(); t != map->tile.end(); t++)
 		{
 			if(num == (*p)->standingPos)
+			{
+				(*t)->occupied = *p;
 				(*p)->update((*t)->x + TILE_SIZE/2,(*t)->y + TILE_SIZE/2);
+				for(auto til = map->tile.begin(); til != map->tile.end(); til++)
+				{
+					if((*til)->occupied == *p && (*til) != (*t))
+						(*til)->occupied = 0;
+				}
+			}
 			num++;
 		}
 

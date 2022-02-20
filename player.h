@@ -4,7 +4,7 @@
 #include "grafika.h"
 #include "math.h"
 #include "map.h"
-
+class Map;
 class Player
 {
 public:
@@ -17,8 +17,7 @@ public:
 	void rotate();
 	void shoot();
 
-	void testWallCollision(int move, Map *map);
-	void testMapEnd(int move, Map *map);
+
 
 	typedef enum{
 		NORTH,
@@ -31,6 +30,13 @@ public:
 
 	bool dead = false;
 	bool interrupted = false;
+	bool move(int mov, Map *map, Facing tmpFacing);
+private:
+	void testWallCollision(int move, Map *map);
+	void testMapEnd(int move, Map *map);
+	bool testPlayerCollision(int move, Map *map);
+	void PlayerCollision(int move, Map *map);
+
 };
 
 #endif // PLAYER_H

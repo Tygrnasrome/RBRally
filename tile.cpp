@@ -6,6 +6,7 @@ Tile::Tile()
 	type = EMPTY;
 	facing = NORTH;
 	tile_size = TILE_SIZE;
+	occupied = 0;
 }
 void Tile::addTexture(Texture *tex)
 {

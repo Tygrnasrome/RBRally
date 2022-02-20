@@ -100,6 +100,9 @@ void Player::move(int move, Map *map)
 	interrupted = false;
 	testMapEnd(move,map);
 	testWallCollision(move,map);
+	if(!interrupted)
+		PlayerCollision(move,map);
+
 	switch (facing)
 	{
 	case NORTH:
@@ -342,3 +345,243 @@ void Player::testMapEnd(int move, Map *map)
 	}
 }
 
+bool Player::testPlayerCollision(int move, Map *map)
+{
+	int n = 0;
+	switch (facing) {
+	case NORTH:
+		if (move == 1)
+		{
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos-map->map_w)
+				{
+					if((*t)->occupied != 0)
+						return true;
+				}
+				n++;
+			}
+		}
+
+
+
+		if (move == -1)
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+map->map_w)
+					if((*t)->occupied != 0)
+						return true;
+				n++;
+			}
+		break;
+	case SOUTH:
+		if (move == 1)
+		{
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+map->map_w)
+					if((*t)->occupied != 0)
+						return true;
+				n++;
+			}
+		}
+
+
+
+		if (move == -1)
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+map->map_w)
+					if((*t)->occupied != 0)
+						return true;
+				n++;
+			}
+		break;
+	case EAST:
+		if (move == 1)
+		{
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+1)
+					if((*t)->occupied != 0)
+						return true;
+				n++;
+			}
+		}
+
+
+
+		if (move == -1)
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+map->map_w)
+					if((*t)->occupied != 0)
+						return true;
+				n++;
+			}
+		break;
+	case WEST:
+		if (move == 1)
+		{
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos-1)
+					if((*t)->occupied != 0)
+						return true;
+				n++;
+			}
+		}
+
+
+
+		if (move == -1)
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+map->map_w)
+					if((*t)->occupied != 0)
+						return true;
+				n++;
+			}
+		break;
+	default:
+		printf("neplatný enum player facing při wall collision testing");
+		break;
+	}
+
+}
+
+void Player::PlayerCollision(int move, Map *map)
+{
+	int n = 0;
+	switch (facing) {
+	case NORTH:
+		if (move == 1)
+		{
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos-map->map_w)
+				{
+					if((*t)->occupied != 0)
+						if((*t)->occupied->move(move, map, facing))
+							interrupted = true;
+				}
+				n++;
+			}
+		}
+
+
+
+		if (move == -1)
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+map->map_w)
+					if((*t)->occupied != 0)
+						if((*t)->occupied->move(move, map, facing))
+							interrupted = true;
+				n++;
+			}
+		break;
+	case SOUTH:
+		if (move == 1)
+		{
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+map->map_w)
+					if((*t)->occupied != 0)
+						if((*t)->occupied->move(move, map, facing))
+							interrupted = true;
+				n++;
+			}
+		}
+
+
+
+		if (move == -1)
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+map->map_w)
+					if((*t)->occupied != 0)
+						if((*t)->occupied->move(move, map, facing))
+							interrupted = true;
+				n++;
+			}
+		break;
+	case EAST:
+		if (move == 1)
+		{
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+1)
+					if((*t)->occupied != 0)
+						if((*t)->occupied->move(move, map, facing))
+							interrupted = true;
+				n++;
+			}
+		}
+
+
+
+		if (move == -1)
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+map->map_w)
+					if((*t)->occupied != 0)
+						if((*t)->occupied->move(move, map, facing))
+							interrupted = true;
+				n++;
+			}
+		break;
+	case WEST:
+		if (move == 1)
+		{
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos-1)
+					if((*t)->occupied != 0)
+						if((*t)->occupied->move(move, map, facing))
+							interrupted = true;
+				n++;
+			}
+		}
+
+
+
+		if (move == -1)
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == standingPos+map->map_w)
+					if((*t)->occupied != 0)
+						if((*t)->occupied->move(move, map, facing))
+							interrupted = true;
+				n++;
+			}
+		break;
+	default:
+		printf("neplatný enum player facing při wall collision testing");
+		break;
+	}
+
+}
+
+bool Player::move(int mov, Map *map, Facing tmpFacing)
+{
+	Facing initFacing;
+	initFacing = facing;
+	facing = tmpFacing;
+	interrupted = false;
+	testMapEnd(mov,map);
+	testWallCollision(mov,map);
+	if(!interrupted)
+		if(testPlayerCollision(mov,map))
+		{
+			facing = initFacing;
+			return true;
+		}
+	move(mov,map);
+	facing = initFacing;
+	if(interrupted)
+		return true;
+	else
+		return false;
+
+}

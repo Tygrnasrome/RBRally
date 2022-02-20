@@ -3,10 +3,11 @@
 
 #include "grafika.h"
 #include "texture.h"
+#include "player.h"
 
 #define TILE_SIZE 50
 #define WALL_SIZE 5
-
+class Player;
 class Tile
 {
 public:
@@ -62,7 +63,7 @@ public:
 
 	}Facing;
 
-
+	Player *occupied;
 	Texture *tex;
 	Type type;
 	Facing facing;

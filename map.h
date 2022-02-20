@@ -10,7 +10,7 @@
 
 #define MAP_SIZE 12
 
-
+class Tile;
 class Map
 {
 public:
