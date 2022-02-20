@@ -13,7 +13,7 @@ public:
 	virtual void event(SDL_Event* e);
 	virtual void keystate(Uint8* kst);
 
-	Map* map, *startMap;
+	Map* map, *startMap, *map_one;
 	std::list<Player*> player;
 	Obrazovka* obrazovka = Obrazovka::instance();
 

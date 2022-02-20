@@ -2,11 +2,11 @@
 
 Game::Game()
 {
-
-	map = new Map("maps/map0.txt");
+	map = new Map();
+	map_one = new Map("maps/map0.txt");
 	startMap = new Map("maps/start.txt");
-	map->place(0,-2*TILE_SIZE);
-	startMap->place(0,6*TILE_SIZE);
+	map->addMap(map_one);
+	map->addMap(startMap);
 	for(int i = 1 ; i < 9 ; i++)
 		player.push_back(new Player(startMap->tiles[startMap->startingPos[i]]->x,startMap->tiles[startMap->startingPos[i]]->y,startMap->startingPos[i]));
 

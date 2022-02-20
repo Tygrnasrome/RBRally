@@ -3,7 +3,26 @@
 
 Obrazovka* obrazoovka = Obrazovka::instance();
 
+Map::Map()
+{
+	texture = new Texture();
+	for (int i = 0;i<MAP_SIZE*MAP_SIZE;i++)
+	{
+		tiles[i] = new Tile();
+		for(int c = 0 ; c<4 ; c ++)
+		{
+			tiles[i]->lasers[c] = Tile::NONE;
+			tiles[i]->walls[c] = Tile::NONE;
+			tiles[i]->addTexture(texture);
 
+		}
+	}
+	map_h = 16;
+	map_w = 12;
+	map_size = map_h * map_w ;
+
+	initX = initY = 0;
+}
 
 Map::Map(const char*fn)
 {
@@ -185,12 +204,18 @@ void Map::draw()
 {
 	x = (obrazoovka->w - map_w*TILE_SIZE)/2 + initX;
 	y = (obrazoovka->h - map_h*TILE_SIZE)/2 + initY;
-	for (int rada = 0;rada<map_h;rada++)
+	int rada = 0;
+	int sloupec = 0;
+	for (auto it = tile.begin(); it != tile.end(); it++)
 	{
-		for (int sloupec = 0;sloupec<map_w;sloupec++)
+
+		if(sloupec == 12)
 		{
-			tiles[(rada*map_w)+sloupec]->draw(sloupec*TILE_SIZE + x ,rada*TILE_SIZE + y);
+			rada++;
+			sloupec = 0;
 		}
+		(*it)->draw(sloupec*TILE_SIZE + x ,rada*TILE_SIZE + y);
+		sloupec++;
 	}
 }
 
@@ -242,7 +267,11 @@ void Map::setLaser(int id, int facing, int num)
 	}
 }
 
-void addMap(Map* map,const char*fn)
+void Map::addMap(Map* map)
 {
-
+	for (int i = 0 ; i < map->map_h * map->map_w ; i++)
+	{
+		auto *t = map->tiles[i];
+		tile.push_back(t);
+	}
 }

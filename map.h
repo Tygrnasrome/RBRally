@@ -15,17 +15,19 @@ class Map
 {
 public:
 
+	Map();
 	Map(const char*fn);
 	void draw();
 	void load(const char*fn);
 	void place(int x, int y);
 	void setWall(int id, int type, int num);
 	void setLaser(int id, int type, int num);
-	void addMap(Map* map,const char*fn);
+	void addMap(Map* map);
 	int map_w, map_h, map_size, x, y, initX, initY;
 	int startingPos[12];
 	std::list<Map*> map;
 	std::array<Tile*,MAP_SIZE*MAP_SIZE> tiles;
+	std::list<Tile*> tile;
 	Texture *texture;
 
 
