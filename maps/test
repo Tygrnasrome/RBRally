@@ -1,0 +1,10 @@
+num of tiles 144
+num of rows 12
+num of coloumms 12
+tile 0 5 wall 1 1 1 1 laser 1 1 1 1
+tile 1 1 wall 1 1 1 1 laser 1 1 1 1
+tile 2 9 wall 1 1 1 1 laser 1 1 1 1
+tile 3 1 wall 1 1 1 1 laser 1 1 1 1
+tile 4 6 wall 1 1 1 1 laser 1 1 1 1
+tile 5 1 wall 1 1 1 1 laser 1 1 1 1
+tile 6 1 wall 1 1 1 1 laser 1 1 1 1
