@@ -7,6 +7,7 @@ Game::Game()
 	startMap = new Map("maps/start.txt");
 	map->addMap(map_one);
 	map->addMap(startMap);
+	map->setSize(12,16);
 	for(int i = 1 ; i < 9 ; i++)
 		player.push_back(new Player(startMap->tiles[startMap->startingPos[i]]->x,startMap->tiles[startMap->startingPos[i]]->y,startMap->startingPos[i]));
 

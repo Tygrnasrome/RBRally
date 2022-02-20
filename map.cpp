@@ -209,7 +209,7 @@ void Map::draw()
 	for (auto it = tile.begin(); it != tile.end(); it++)
 	{
 
-		if(sloupec == 12)
+		if(sloupec == map_w)
 		{
 			rada++;
 			sloupec = 0;
@@ -273,5 +273,21 @@ void Map::addMap(Map* map)
 	{
 		auto *t = map->tiles[i];
 		tile.push_back(t);
+	}
+}
+
+void Map::setSize(int map_w, int map_h)
+{
+	this->map_h = map_h;
+	this->map_w = map_w;
+}
+
+void Map::delMap()
+{
+	for (auto it = tile.begin(); it != tile.end(); it++)
+	{
+		delete *it;
+		it = tile.erase(it);
+		it--;
 	}
 }

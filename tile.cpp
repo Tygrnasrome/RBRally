@@ -49,6 +49,14 @@ void Tile::draw(int x, int y)
 	case MODIFY:
 		repair(x,y,1);
 		break;
+	case ERASE:
+		empty(x,y);
+		barva(CERVENA);
+		bod(x,y);
+		cara(x+TILE_SIZE, y+TILE_SIZE);
+		bod(x+TILE_SIZE,y);
+		cara(x,y+TILE_SIZE);
+		break;
 	default:
 		printf("error - unmatching tile type");
 		exit(1);
@@ -406,6 +414,9 @@ void Tile::setType(int num)
 		break;
 	case 16:
 		type = STARTING_POS;
+		break;
+	case 17:
+		type = ERASE;
 		break;
 	default:
 		printf("neplatné číslo typu tile %d", num);

@@ -49,7 +49,8 @@ public:
 		HOLE,
 		REPAIR,
 		MODIFY,
-		STARTING_POS
+		STARTING_POS,
+		ERASE
 	}Type;
 
 	typedef enum{

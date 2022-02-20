@@ -12,14 +12,16 @@ public:
 	virtual void update();
 	virtual void event(SDL_Event* e);
 	virtual void keystate(Uint8* kst);
-	void drawSelectingRect();
+	void drawSelectingRect(int id);
 	void createFile(const char *fn);
 	void loadFile(const char *fn);
-	void addObject();
+	void addObject(Map *map);
 	void changeSize(int x, int y);
-	Map* map;
+	void setBuildingState();
+	void erase(Map *map);
+	Map* map, *draw_options, *example_tile;
 	int rotation = 1;
-	int type = 1;
+	Obrazovka* obrazovka = Obrazovka::instance();
 	typedef enum{
 		EMPTY,
 		STR_BELT,
@@ -38,13 +40,14 @@ public:
 		REPAIR,
 		MODIFY,
 		WALL,
-		LASER
+		LASER,
+		ERASE
 
 	}Type;
 	int walls[4];
 	Type building_state;
-	int selectedTileX = 1;
-	int selectedTileY = 1;
+	int selectedTileX, selTypeTileX = 0;
+	int selectedTileY, selTypeTileY = 0;
 	int map_w = 12;
 	int map_h = 12;
 };
