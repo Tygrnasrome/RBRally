@@ -22,13 +22,8 @@ public:
 	void setWall(int id, int type, int num);
 	void setLaser(int id, int type, int num);
 	void addMap(Map* map,const char*fn);
-	int map_w;
-	int map_h;
-	int map_size;
-	int x;
-	int y;
-	int initX;
-	int initY;
+	int map_w, map_h, map_size, x, y, initX, initY;
+	int startingPos[12];
 	std::list<Map*> map;
 	std::array<Tile*,MAP_SIZE*MAP_SIZE> tiles;
 	Texture *texture;

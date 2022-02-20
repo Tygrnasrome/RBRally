@@ -14,9 +14,11 @@ void Tile::addTexture(Texture *tex)
 
 void Tile::draw(int x, int y)
 {
-
+	this->x = x;
+	this->y = y;
 	switch (type) {
 	case EMPTY:
+	case STARTING_POS:
 		empty(x,y);
 		break;
 	case STR_BELT:
@@ -401,6 +403,9 @@ void Tile::setType(int num)
 		break;
 	case 15:
 		type = MODIFY;
+		break;
+	case 16:
+		type = STARTING_POS;
 		break;
 	default:
 		printf("neplatné číslo typu tile %d", num);

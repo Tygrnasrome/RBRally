@@ -7,16 +7,26 @@ Game::Game()
 	startMap = new Map("maps/start.txt");
 	map->place(0,-2*TILE_SIZE);
 	startMap->place(0,6*TILE_SIZE);
+	for(int i = 1 ; i < 9 ; i++)
+		player.push_back(new Player(startMap->tiles[startMap->startingPos[i]]->x,startMap->tiles[startMap->startingPos[i]]->y,startMap->startingPos[i]));
+
 }
 
 void Game::draw()
 {
 	map->draw();
 	startMap->draw();
+	for(auto it = player.begin(); it != player.end(); it++)
+	{
+		(*it)->draw();
+	}
 }
 void Game::update()
 {
-
+	for(auto it = player.begin(); it != player.end(); it++)
+	{
+		(*it)->update(startMap->tiles[(*it)->standingPos]->x + TILE_SIZE/2,startMap->tiles[(*it)->standingPos]->y + TILE_SIZE/2);
+	}
 }
 void Game::event(SDL_Event* e)
 {
@@ -27,7 +37,28 @@ void Game::event(SDL_Event* e)
 		{
 		/* změna building_state */
 		case SDLK_LEFT:
-			map->load("maps/map0.txt");
+			for(auto it = player.begin(); it != player.end(); it++)
+			{
+				(*it)->facing = Player::WEST;
+			}
+			break;
+		case SDLK_UP:
+			for(auto it = player.begin(); it != player.end(); it++)
+			{
+				(*it)->facing = Player::NORTH;
+			}
+			break;
+		case SDLK_RIGHT:
+			for(auto it = player.begin(); it != player.end(); it++)
+			{
+				(*it)->facing = Player::EAST;
+			}
+			break;
+		case SDLK_DOWN:
+			for(auto it = player.begin(); it != player.end(); it++)
+			{
+				(*it)->facing = Player::SOUTH;
+			}
 			break;
 		}
 	}

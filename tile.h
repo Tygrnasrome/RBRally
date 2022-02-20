@@ -48,7 +48,8 @@ public:
 		LEFT_ROTATOR,
 		HOLE,
 		REPAIR,
-		MODIFY
+		MODIFY,
+		STARTING_POS
 	}Type;
 
 	typedef enum{
@@ -67,7 +68,8 @@ public:
 	Facing walls[4];
 	Facing lasers[4];
 
-	int tile_size;
+	int starting_pos_num = 0;
+	int tile_size, x, y;
 };
 
 #endif // TILE_H

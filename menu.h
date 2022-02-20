@@ -19,6 +19,7 @@ public:
 	virtual void event(SDL_Event* e);
 	virtual void keystate(Uint8* kst);
 	Obrazek *title;
+	Obrazovka* obrazovka = Obrazovka::instance();
 };
 
 #endif // MENU_H

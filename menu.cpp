@@ -1,5 +1,5 @@
 #include "menu.h"
-Obrazovka* obrazovka = Obrazovka::instance();
+
 Menu::Menu()
 {
 //	title->nacti("textures/banners/robo_rally.png");

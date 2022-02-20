@@ -27,7 +27,7 @@ Map::Map(const char*fn)
 void Map::load(const char*fn)
 {
 	map_h = map_w = 0;
-	int object_size = 11;
+	int object_size = 12;
 	int d,  num = 0;
 	int status = 0;
 	int objects[object_size];
@@ -125,6 +125,11 @@ void Map::load(const char*fn)
 				status = 0;
 				word.clear();
 				tiles[objects[0]]->setType(objects[1]);
+				if(tiles[objects[0]]->type == Tile::STARTING_POS)
+				{
+					tiles[objects[0]]->starting_pos_num = objects[11];
+					startingPos[objects[11]] = objects[0];
+				}
 				tiles[objects[0]]->setFacing(objects[2]);
 				for(int i = 0 ; i < 4 ; i++)
 					tiles[objects[0]]->addWall(i,objects[3+i]);
@@ -164,6 +169,16 @@ void Map::place(int x, int y)
 {
 	initX = x;
 	initY = y;
+	this->x = (obrazoovka->w - map_w*TILE_SIZE)/2 + initX;
+	this->y = (obrazoovka->h - map_h*TILE_SIZE)/2 + initY;
+	for (int rada = 0 ; rada < map_h ; rada++)
+	{
+		for (int sloupec = 0 ; sloupec < map_w  ; sloupec++)
+		{
+			tiles[(rada*map_w)+sloupec]->x = sloupec*TILE_SIZE + this->x;
+			tiles[(rada*map_w)+sloupec]->y = rada*TILE_SIZE + this->y;
+		}
+	}
 }
 
 void Map::draw()

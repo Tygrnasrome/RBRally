@@ -2,6 +2,7 @@
 #define GAME_H
 #include "map.h"
 #include "screen.h"
+#include "player.h"
 
 class Game : public Screen
 {
@@ -13,6 +14,8 @@ public:
 	virtual void keystate(Uint8* kst);
 
 	Map* map, *startMap;
+	std::list<Player*> player;
+	Obrazovka* obrazovka = Obrazovka::instance();
 
 };
 
