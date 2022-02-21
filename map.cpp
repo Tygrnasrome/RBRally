@@ -428,3 +428,179 @@ void Map::rotatorMovement(Player *player)
 	}
 }
 
+bool Map::laserShoot()
+{
+	bool end = false;
+	int testTil, dir, h, w, n = 0;
+	// init
+	for (auto it = tile.begin(); it != tile.end(); it++)
+		for(int i = 0 ; i < 4 ; i++)
+			if((*it)->lasers[i] != 0)
+			{
+
+				end = false;
+				switch ((*it)->lasers[i]) {
+				case Tile::NORTH:
+					dir = map_w;
+					break;
+				case Tile::EAST:
+					dir = -1;
+					break;
+				case Tile::SOUTH:
+					dir = -map_w;
+					break;
+				case Tile::WEST:
+					dir = 1;
+					break;
+				}
+				testTil = (*it)->number;
+				h = testTil/map_w;
+				w = (testTil+dir)%map_w;
+				while(!end)
+				{
+					n = 0;
+					h = (testTil+dir)/map_w;
+					w = (testTil+dir)%map_w;
+					if(h < 0 || h > map_h || w == 0 || w == map_w-1)
+					{
+						end = true;
+					}
+					switch ((*it)->lasers[i]) {
+					case Tile::NORTH:
+						for(auto t = tile.begin(); t != tile.end(); t++)
+						{
+							if(n == testTil)
+							{
+								if(testTil != (*it)->number)
+									for(int i = 0; i != 4; i++)
+									{
+										if((*t)->walls[i] == Tile::NORTH)
+										{
+											end = true;
+										}
+									}
+								if((*t)->occupied != 0)
+								{
+									if(!end)
+									(*t)->occupied->takeDamage();
+									end = true;
+								}
+								for(int i = 0; i != 4; i++)
+								{
+									if((*t)->walls[i] == Tile::SOUTH)
+									{
+										end = true;
+									}
+								}
+
+							}
+							n++;
+						}
+						testTil += dir;
+						break;
+					case Tile::EAST:
+						for(auto t = tile.begin(); t != tile.end(); t++)
+						{
+							if(n == testTil)
+							{
+								if(testTil != (*it)->number)
+									for(int i = 0; i != 4; i++)
+									{
+
+
+										for(int i = 0; i != 4; i++)
+										{
+											if((*t)->walls[i] == Tile::EAST)
+											{
+												end = true;
+											}
+										}
+
+										if((*t)->occupied != 0)
+										{
+											if(!end)
+											(*t)->occupied->takeDamage();
+											end = true;
+										}
+										if((*t)->walls[i] == Tile::WEST)
+										{
+											end = true;
+										}
+									}
+							}
+							n++;
+						}
+						testTil += dir;
+						break;
+					case Tile::SOUTH:
+						for(auto t = tile.begin(); t != tile.end(); t++)
+						{
+							if(n == testTil)
+							{
+								if(testTil != (*it)->number)
+									for(int i = 0; i != 4; i++)
+									{
+										if((*t)->walls[i] == Tile::SOUTH)
+										{
+											end = true;
+										}
+									}
+								if((*t)->occupied != 0)
+								{
+									if(!end)
+									(*t)->occupied->takeDamage();
+									end = true;
+								}
+								for(int i = 0; i != 4; i++)
+								{
+									if((*t)->walls[i] == Tile::NORTH)
+									{
+										end = true;
+									}
+								}
+
+
+							}
+							n++;
+						}
+						testTil += dir;
+						break;
+					case Tile::WEST:
+						for(auto t = tile.begin(); t != tile.end(); t++)
+						{
+							if(n == testTil)
+							{
+
+								if(testTil != (*it)->number)
+									for(int i = 0; i != 4; i++)
+									{
+										if((*t)->walls[i] == Tile::WEST)
+										{
+											end = true;
+										}
+									}
+								if((*t)->occupied != 0)
+								{
+									if(!end)
+									(*t)->occupied->takeDamage();
+									end = true;
+								}
+								for(int i = 0; i != 4; i++)
+								{
+									if((*t)->walls[i] == Tile::EAST)
+									{
+										end = true;
+									}
+								}
+
+
+							}
+							n++;
+						}
+						testTil += dir;
+						break;
+					}
+				}
+			}
+}
+

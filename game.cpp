@@ -114,6 +114,17 @@ void Game::event(SDL_Event* e)
 			}
 
 			break;
+
+		case SDLK_l:
+			printf("\n----------------	 LASER SHOOT		---------------------------\n\n");
+				map->laserShoot();
+				for(auto it = player.begin(); it != player.end(); it++)
+				{
+					if(!(*it)->dead)
+						(*it)->testDamage();
+				}
+			break;
+
 		case SDLK_v:
 
 			for(auto it = player.begin(); it != player.end(); it++)

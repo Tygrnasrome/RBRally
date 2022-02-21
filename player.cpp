@@ -710,7 +710,7 @@ bool Player::move(int mov, Map *map, Facing tmpFacing)
 
 }
 
-bool Player::revive()
+void Player::revive()
 {
 	if (health>0)
 	{
@@ -719,9 +719,7 @@ bool Player::revive()
 		facing = NORTH;
 		health--;
 		damage = 2;
-		return true;
-	}else
-		return false;
+	}
 
 }
 bool Player::testDamage()
@@ -770,75 +768,20 @@ bool Player::shoot(Map* map)
 		{
 			return true;
 		}
-			switch (facing) {
-			case NORTH:
-				for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+		switch (facing) {
+		case NORTH:
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == tile)
 				{
-					if(n == tile)
+					for(int i = 0; i != 4; i++)
 					{
-						for(int i = 0; i != 4; i++)
+						if((*t)->walls[i] == Tile::NORTH)
 						{
-							if((*t)->walls[i] == Tile::NORTH)
-							{
-								return true;
-							}
+							return true;
 						}
-						if(tile != standingPos)
-							for(int i = 0; i != 4; i++)
-							{
-								if((*t)->walls[i] == Tile::SOUTH)
-								{
-									return true;
-								}
-							}
-						if(tile != standingPos)
-							if((*t)->occupied != 0 && (*t)->occupied != this)
-							{
-								(*t)->occupied->takeDamage();
-								return true;
-							}
 					}
-					n++;
-				}
-				tile += dir;
-				break;
-			case EAST:
-				for(auto t = map->tile.begin(); t != map->tile.end(); t++)
-				{
-					if(n == tile)
-					{
-						for(int i = 0; i != 4; i++)
-						{
-							if((*t)->walls[i] == Tile::EAST)
-							{
-								return true;
-							}
-						}
-						if(tile != standingPos)
-							for(int i = 0; i != 4; i++)
-							{
-								if((*t)->walls[i] == Tile::WEST)
-								{
-									return true;
-								}
-							}
-						if(tile != standingPos)
-							if((*t)->occupied != 0 && (*t)->occupied != this)
-							{
-								(*t)->occupied->takeDamage();
-								return true;
-							}
-
-					}
-					n++;
-				}
-				tile += dir;
-				break;
-			case SOUTH:
-				for(auto t = map->tile.begin(); t != map->tile.end(); t++)
-				{
-					if(n == tile)
-					{
+					if(tile != standingPos)
 						for(int i = 0; i != 4; i++)
 						{
 							if((*t)->walls[i] == Tile::SOUTH)
@@ -846,31 +789,30 @@ bool Player::shoot(Map* map)
 								return true;
 							}
 						}
-						if(tile != standingPos)
-							for(int i = 0; i != 4; i++)
-							{
-								if((*t)->walls[i] == Tile::NORTH)
-								{
-									return true;
-								}
-							}
-						if(tile != standingPos)
-							if((*t)->occupied != 0 && (*t)->occupied != this)
-							{
-								(*t)->occupied->takeDamage();
-								return true;
-							}
-
-					}
-					n++;
+					if(tile != standingPos)
+						if((*t)->occupied != 0 && (*t)->occupied != this)
+						{
+							(*t)->occupied->takeDamage();
+							return true;
+						}
 				}
-				tile += dir;
-				break;
-			case WEST:
-				for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+				n++;
+			}
+			tile += dir;
+			break;
+		case EAST:
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == tile)
 				{
-					if(n == tile)
+					for(int i = 0; i != 4; i++)
 					{
+						if((*t)->walls[i] == Tile::EAST)
+						{
+							return true;
+						}
+					}
+					if(tile != standingPos)
 						for(int i = 0; i != 4; i++)
 						{
 							if((*t)->walls[i] == Tile::WEST)
@@ -878,27 +820,83 @@ bool Player::shoot(Map* map)
 								return true;
 							}
 						}
-						if(tile != standingPos)
-							for(int i = 0; i != 4; i++)
+					if(tile != standingPos)
+						if((*t)->occupied != 0 && (*t)->occupied != this)
+						{
+							(*t)->occupied->takeDamage();
+							return true;
+						}
+
+				}
+				n++;
+			}
+			tile += dir;
+			break;
+		case SOUTH:
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == tile)
+				{
+					for(int i = 0; i != 4; i++)
+					{
+						if((*t)->walls[i] == Tile::SOUTH)
+						{
+							return true;
+						}
+					}
+					if(tile != standingPos)
+						for(int i = 0; i != 4; i++)
+						{
+							if((*t)->walls[i] == Tile::NORTH)
 							{
-								if((*t)->walls[i] == Tile::EAST)
-								{
-									return true;
-								}
-							}
-						if(tile != standingPos)
-							if((*t)->occupied != 0 && (*t)->occupied != this)
-							{
-								(*t)->occupied->takeDamage();
 								return true;
 							}
+						}
+					if(tile != standingPos)
+						if((*t)->occupied != 0 && (*t)->occupied != this)
+						{
+							(*t)->occupied->takeDamage();
+							return true;
+						}
 
-					}
-					n++;
 				}
-				tile += dir;
-				break;
+				n++;
 			}
+			tile += dir;
+			break;
+		case WEST:
+			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
+			{
+				if(n == tile)
+				{
+					for(int i = 0; i != 4; i++)
+					{
+						if((*t)->walls[i] == Tile::WEST)
+						{
+							return true;
+						}
+					}
+					if(tile != standingPos)
+						for(int i = 0; i != 4; i++)
+						{
+							if((*t)->walls[i] == Tile::EAST)
+							{
+								return true;
+							}
+						}
+					if(tile != standingPos)
+						if((*t)->occupied != 0 && (*t)->occupied != this)
+						{
+							(*t)->occupied->takeDamage();
+							return true;
+						}
+
+				}
+				n++;
+			}
+			tile += dir;
+			break;
+		}
 	}
 
 }

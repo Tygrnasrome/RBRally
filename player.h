@@ -18,7 +18,7 @@ public:
 
 	void rotate(int rotation);
 	bool shoot(Map *map);
-	bool revive();
+	void revive();
 	void takeDamage();
 	bool testDamage();
 
