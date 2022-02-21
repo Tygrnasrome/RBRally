@@ -36,7 +36,8 @@ void Game::draw()
 	startMap->draw();
 	for(auto it = player.begin(); it != player.end(); it++)
 	{
-		(*it)->draw();
+		if(!(*it)->dead)
+			(*it)->draw();
 	}
 
 }
@@ -50,11 +51,13 @@ void Game::update()
 		{
 			if(num == (*p)->standingPos)
 			{
-				(*t)->occupied = *p;
+				if(!(*p)->dead)
+					(*t)->occupied = *p;
+
 				(*p)->update((*t)->x + TILE_SIZE/2,(*t)->y + TILE_SIZE/2);
 				for(auto til = map->tile.begin(); til != map->tile.end(); til++)
 				{
-					if((*til)->occupied == *p && (*til) != (*t))
+					if((*til)->occupied == *p && (*til) != (*t) || (*til)->occupied == *p && (*p)->dead)
 						(*til)->occupied = 0;
 				}
 			}
@@ -92,6 +95,28 @@ void Game::event(SDL_Event* e)
 
 			activePlayer->facing = Player::SOUTH;
 
+			break;
+		case SDLK_r:
+
+			for(auto it = player.begin(); it != player.end(); it++)
+			{
+				if((*it)->dead)
+					(*it)->revive();
+			}
+
+			break;
+		case SDLK_b:
+
+			for(auto it = player.begin(); it != player.end(); it++)
+			{
+				if(!(*it)->dead)
+					(*it)->shoot(map);
+			}
+			for(auto it = player.begin(); it != player.end(); it++)
+			{
+				if(!(*it)->dead)
+					(*it)->testDamage();
+			}
 			break;
 		case SDLK_w:
 
