@@ -4,6 +4,8 @@
 #include "screen.h"
 #include "player.h"
 
+class Map;
+class Player;
 class Game : public Screen
 {
 public:

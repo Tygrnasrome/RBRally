@@ -5,6 +5,7 @@
 #include "math.h"
 #include "map.h"
 class Map;
+
 class Player
 {
 public:
@@ -14,6 +15,7 @@ public:
 	void draw();
 	void update(int x, int y);
 	void move(int move, Map *map);
+
 	void rotate(int rotation);
 	bool shoot(Map *map);
 	bool revive();
@@ -30,7 +32,7 @@ public:
 
 	}Facing;
 	Facing facing;
-
+	void boardMove(int move, Map *map, int tileFacing);
 	bool dead = false;
 	bool interrupted = false;
 	bool move(int mov, Map *map, Facing tmpFacing);

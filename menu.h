@@ -18,7 +18,7 @@ public:
 	virtual void update();
 	virtual void event(SDL_Event* e);
 	virtual void keystate(Uint8* kst);
-	Obrazek *title;
+	Obrazek *title, *background;
 	Obrazovka* obrazovka = Obrazovka::instance();
 };
 

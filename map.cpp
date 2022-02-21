@@ -284,6 +284,12 @@ void Map::addMap(Map* map)
 		tile.push_back(t);
 	}
 	addedSize += map->map_h * map->map_w;
+	int number = 0;
+	for (auto it = tile.begin(); it != tile.end(); it++)
+	{
+		(*it)->number = number;
+		number++;
+	}
 }
 
 void Map::setSize(int map_w, int map_h)
@@ -301,3 +307,124 @@ void Map::delMap()
 		it--;
 	}
 }
+void Map::boardMovement(Player *player)
+{
+	beltMovement(1, player);
+	beltMovement(2, player);
+	rotatorMovement(player);
+
+	for(auto t = tile.begin(); t != tile.end(); t++)
+	{
+		if((*t)->occupied == player)
+			printf("tile %d occupied \n", (*t)->number);
+	}
+}
+
+void Map::beltMovement(int beltType, Player *player)
+{
+	bool end = false;
+	int n = 0;
+	for (auto it = tile.begin(); it != tile.end(); it++)
+	{
+		if((*it)->occupied != 0 && (*it)->occupied == player && end == false)
+		{
+			if(beltType == 1)
+				if(	(*it)->type == Tile::STR_BELT || (*it)->type == Tile::LEFT_BELT ||
+						(*it)->type == Tile::RIGHT_BELT || (*it)->type == Tile::UNI_BELT ||
+						(*it)->type == Tile::STR_FAST_BELT || (*it)->type == Tile::LEFT_FAST_BELT ||
+						(*it)->type == Tile::RIGHT_FAST_BELT || (*it)->type == Tile::UNI_FAST_BELT)
+				{
+					int tileFacing = 0;
+					if((*it)->facing == Tile::NORTH) tileFacing = 1;
+					if((*it)->facing == Tile::EAST) tileFacing = 2;
+					if((*it)->facing == Tile::SOUTH) tileFacing = 3;
+					if((*it)->facing == Tile::WEST) tileFacing = 4;
+					(*it)->occupied->boardMove(1,this,tileFacing);
+					end = true;
+					for (auto t = tile.begin(); t != tile.end(); t++)
+					{
+						if((*t)->number == player->standingPos)
+						{
+							if(		(*t)->type == Tile::RIGHT_BELT ||
+									(*t)->type == Tile::RIGHT_FAST_BELT )
+							{
+								player->rotate(1);
+							}
+							if(		(*t)->type == Tile::LEFT_BELT ||
+									(*t)->type == Tile::LEFT_FAST_BELT )
+							{
+								player->rotate(-1);
+							}
+						}
+
+					}
+				}
+			if(beltType == 2)
+				if(		(*it)->type == Tile::STR_FAST_BELT || (*it)->type == Tile::LEFT_FAST_BELT ||
+						(*it)->type == Tile::RIGHT_FAST_BELT || (*it)->type == Tile::UNI_FAST_BELT)
+				{
+					int tileFacing = 0;
+					if((*it)->facing == Tile::NORTH) tileFacing = 1;
+					if((*it)->facing == Tile::EAST) tileFacing = 2;
+					if((*it)->facing == Tile::SOUTH) tileFacing = 3;
+					if((*it)->facing == Tile::WEST) tileFacing = 4;
+					(*it)->occupied->boardMove(1,this,tileFacing);
+					end = true;
+					for (auto t = tile.begin(); t != tile.end(); t++)
+					{
+						if((*t)->number == (*it)->occupied->standingPos)
+						{
+							if((*t)->type == Tile::RIGHT_FAST_BELT )
+							{
+								(*it)->occupied->rotate(1);
+							}
+							if((*t)->type == Tile::LEFT_FAST_BELT )
+							{
+								(*it)->occupied->rotate(-1);
+							}
+						}
+
+					}
+				}
+			int num = 0;
+			for(auto t = tile.begin(); t != tile.end(); t++)
+			{
+				if((*t)->occupied == player)
+					(*t)->occupied = 0;
+				if(num == player->standingPos)
+				{
+
+					if(!player->dead)
+						(*t)->occupied = player;
+				}
+				num++;
+			}
+		}
+
+
+
+		n++;
+	}
+}
+
+void Map::rotatorMovement(Player *player)
+{
+	bool end = false;
+	int n = 0;
+	for (auto it = tile.begin(); it != tile.end(); it++)
+	{
+		if((*it)->occupied != 0 && (*it)->occupied == player && end == false)
+		{
+			if((*it)->type == Tile::LEFT_ROTATOR)
+			{
+				player->rotate(-1);
+			}
+			if((*it)->type == Tile::RIGHT_ROTATOR)
+			{
+				player->rotate(1);
+			}
+		}
+
+	}
+}
+

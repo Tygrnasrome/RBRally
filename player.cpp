@@ -130,7 +130,24 @@ void Player::rotate(int rotation)
 		break;
 	}
 }
-
+void Player::boardMove(int move, Map *map, int tileFacing)
+{
+	switch (tileFacing)
+	{
+	case 1:
+		standingPos -= move*map->map_w;
+		break;
+	case 3:
+		standingPos += move*map->map_w;
+		break;
+	case 2:
+		standingPos += move;
+		break;
+	case 4:
+		standingPos -= move;
+		break;
+	}
+}
 void Player::move(int move, Map *map)
 {
 

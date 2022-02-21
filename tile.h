@@ -69,7 +69,7 @@ public:
 	Facing facing;
 	Facing walls[4];
 	Facing lasers[4];
-
+	int number;
 	int starting_pos_num = 0;
 	int tile_size, x, y;
 };

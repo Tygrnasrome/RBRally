@@ -2,8 +2,12 @@
 
 Menu::Menu()
 {
-//	title->nacti("textures/banners/robo_rally.png");
-//	title->umisti(obrazovka->w/2,50);
+	title = new Obrazek();
+	background = new Obrazek();
+	background->nacti("textures/banners/FIyOg.png");
+	background->umisti(obrazovka->x,obrazovka->y);
+	title->nacti("textures/banners/main.larger.jpg");
+	title->umisti(obrazovka->w/2,50);
 }
 
 void Menu::add(Button *b)
@@ -13,6 +17,13 @@ void Menu::add(Button *b)
 
 void Menu::draw()
 {
+	for(int i = 0; i < 2 ; i++)
+	{
+		background->umisti(obrazovka->x+i*background->w,obrazovka->y);
+		background->kresli();
+	}
+
+	title->kresli();
 	int starth = obrazovka->h/2 - buttons.size()*40+15;   /*promenna starth = pozice zacatku
 			    vykreslovani tlacitek*/
 	int h = 0;
@@ -26,11 +37,12 @@ void Menu::draw()
 			    ale realna mezera je cislo za h+ - 50,
 			    coz v tomto pripade je 80-50*/
 	}
-//	title->kresli();
+
 }
 void Menu::update()
 {
-//	title->umisti(obrazovka->w/2,50);
+	title->umisti(obrazovka->w/2-title->w/2,obrazovka->y);
+	background->umisti(obrazovka->x,obrazovka->y);
 }
 void Menu::event(SDL_Event* e)
 {

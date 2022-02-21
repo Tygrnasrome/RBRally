@@ -106,6 +106,15 @@ void Game::event(SDL_Event* e)
 
 			break;
 		case SDLK_b:
+			printf("\n----------------	 BOARD MOVEMENT		---------------------------\n\n");
+			for(auto it = player.begin(); it != player.end(); it++)
+			{
+
+				map->boardMovement(*it);
+			}
+
+			break;
+		case SDLK_v:
 
 			for(auto it = player.begin(); it != player.end(); it++)
 			{
@@ -124,6 +133,7 @@ void Game::event(SDL_Event* e)
 
 			break;
 		}
+
 	}
 }
 void Game::keystate(Uint8* kst)
