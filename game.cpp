@@ -10,6 +10,11 @@ Game::Game()
 	map->setSize(12,16);
 	map->draw();
 	startMap->draw();
+
+	deck = new Deck();
+	deck->placeDeck(map->x + map->map_w*TILE_SIZE + 10, map->y);
+	deck->placeDiscardPile(map->x + map->map_w*TILE_SIZE + 10, map->y + 200);
+
 	for(int i = 1 ; i < playerNum ; i++)
 	{
 		int num = 0;
@@ -34,12 +39,13 @@ void Game::draw()
 {
 	map->draw();
 	startMap->draw();
+
 	for(auto it = player.begin(); it != player.end(); it++)
 	{
 		if(!(*it)->dead)
 			(*it)->draw();
 	}
-
+	deck->draw(activePlayer);
 }
 void Game::update()
 {
@@ -65,7 +71,8 @@ void Game::update()
 		}
 
 	}
-
+	deck->placeDeck(map->x + map->map_w*TILE_SIZE + 10, map->y);
+	deck->placeDiscardPile(map->x + map->map_w*TILE_SIZE + 10, map->y + 200);
 
 }
 void Game::event(SDL_Event* e)
@@ -123,6 +130,16 @@ void Game::event(SDL_Event* e)
 					if(!(*it)->dead)
 						(*it)->testDamage();
 				}
+			break;
+		case SDLK_c:
+			printf("\n----------------	 CARD DRAWING	---------------------------\n\n");
+
+//				for(auto it = player.begin(); it != player.end(); it++)
+//				{
+//					if(!(*it)->dead)
+//						deck->drawCards(*it);
+//				}
+			deck->drawCards(activePlayer);
 			break;
 
 		case SDLK_v:

@@ -10,7 +10,7 @@ class Player
 {
 public:
 	Player(int x, int y, int tile_num);
-	int x, y, red, g, b, revivePos, standingPos, health, damage;
+	int x, y, red, g, b, revivePos, standingPos, health, damage, damageMax;
 	int registers[5];
 	void draw();
 	void update(int x, int y);

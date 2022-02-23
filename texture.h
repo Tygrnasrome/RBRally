@@ -15,6 +15,7 @@ public:
 	Texture *texEmpty, *texHole, *texRotator, *texRepair, *texWall, *texLaser;
 	Texture *texBeltStr, *texBeltLeft, *texBeltRight, *texBeltUni, *texBeltT;
 	Texture *texFast_beltStr, *texFast_beltLeft, *texFast_beltRight, *texFast_beltUni, *texFast_beltT;
+	Texture *texMove, *texRotate, *texHidden;
 };
 
 #endif // TEXTURE_H

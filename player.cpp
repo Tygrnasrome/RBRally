@@ -9,6 +9,7 @@ Player::Player(int x, int y, int tile_num)
 	facing = NORTH;
 	health = 3;
 	damage = 0;
+	damageMax = 10;
 }
 
 void Player::draw()
@@ -724,7 +725,7 @@ void Player::revive()
 }
 bool Player::testDamage()
 {
-	if(damage == 10)
+	if(damage == damageMax)
 	{
 		dead = true;
 		return true;

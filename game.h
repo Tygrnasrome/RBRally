@@ -3,6 +3,7 @@
 #include "map.h"
 #include "screen.h"
 #include "player.h"
+#include "deck.h"
 
 class Map;
 class Player;
@@ -18,6 +19,7 @@ public:
 	int playerNum = 9;
 	Map* map, *startMap, *map_one;
 	std::list<Player*> player;
+	Deck *deck;
 	Player* activePlayer;
 	Obrazovka* obrazovka = Obrazovka::instance();
 

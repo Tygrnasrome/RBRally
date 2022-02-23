@@ -31,6 +31,9 @@ Texture::Texture()
 	texRotator = new Texture("textures/tiles/rotator/rotator", 2);
 	texWall = new Texture("textures/tiles/wall/wall", 2);
 	texLaser = new Texture("textures/tiles/laser/laser", 4);
+	texMove = new Texture("textures/cards/move", 4);
+	texRotate = new Texture("textures/cards/rotate", 3);
+	texHidden = new Texture("textures/cards/back", 1);
 }
 
 void Texture::place(int x, int y)
