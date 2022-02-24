@@ -3,7 +3,7 @@
 Deck::Deck()
 {
 	tex = new Texture();
-	moveOneC = moveTwoC = moveThreeC = backUpC = rotateLC = rotateRC =uturnC = 15;
+	moveOneC = moveTwoC = moveThreeC = backUpC = rotateLC = rotateRC =uturnC = 3;
 	size = moveOneC + moveTwoC + moveThreeC + backUpC + rotateLC + rotateRC + uturnC;
 
 	createDeck();
@@ -123,19 +123,25 @@ void Deck::shuffle()
 	for (int i = 0 ; i<size ; i++)
 		taken[i] = 0;
 	number = 0;
-	//shuffle only inDeck cards
+	//shuffle only inDeck and inDiscardPile cards
 	for(auto it = cards.begin(); it != cards.end(); it++)
 	{
-		if((*it)->state != Card::IN_DECK)
-			taken[number] = true;
+
+
+		if((*it)->state == Card::IN_DISCARD_PILE)
+		{
+			(*it)->state = Card::IN_DECK;
+		}
 		if((*it)->state == Card::IN_DECK)
 			inDeckSize++;
+		if((*it)->state != Card::IN_DECK)
+			taken[number] = true;
 		number++;
 	}
 	Card*tmpCards[inDeckSize];
 
 	//creating paralel deck with random order
-	while(tmpSize != size)
+	while(tmpSize != inDeckSize)
 	{
 		number = 0;
 		rand = nahoda(size);
@@ -170,6 +176,14 @@ void Deck::shuffle()
 		cards.push_front(tmpCards[it]);
 	}
 
+	//set new inDeck cards to hidden
+	for(auto it = cards.begin(); it != cards.end(); it++)
+	{
+		if((*it)->state == Card::IN_DECK)
+		{
+			(*it)->hidden = true;
+		}
+	}
 
 }
 
@@ -187,15 +201,25 @@ void Deck::copyCard(Card *copy, Card *original)
 }
 void Deck::draw(Player* player)
 {
-
+	int number = 0;
+	//	draw (paint) cards
 	placeCards();
 	int i = 0;
+	//count how many cards to draw
 	for(auto it = cards.begin(); it != cards.end(); it++)
 	{
 
 		if((*it)->inHand == player)
 		{
-			(*it)->x = obrazovka->w/2 - ((player->damageMax - player->damage) * 150) + (i*200);
+			number++;
+		}
+	}
+	for(auto it = cards.begin(); it != cards.end(); it++)
+	{
+
+		if((*it)->inHand == player)
+		{
+			(*it)->x = obrazovka->w/2 - (number * 40) + (i*80);
 			(*it)->y = obrazovka->h - 250;
 			(*it)->draw();
 			(*it)->hidden = false;
@@ -231,18 +255,38 @@ void Deck::placeCards()
 }
 
 
-void Deck::drawCards(Player* player)
+void Deck::drawCards(Player* player, int owned)
 {
 	int draws = player->damageMax - player->damage;
-	int count = 0;
+	int count = owned;
 	//player draws cards
 	for(auto it = cards.begin(); it != cards.end(); it++)
 	{
-		if ((*it)->state == Card::IN_DECK && (*it)->inHand == 0 && count <= draws)
+		if ((*it)->state == Card::IN_DECK && (*it)->inHand == 0 && count < draws)
 		{
 			count++;
 			(*it)->inHand = player;
 			(*it)->state = Card::IN_HAND;
+		}
+	}
+	if(count < draws)
+	{
+		//if cards are gone shuffle and draw again
+		printf("the deck was out of cards and has been shuffled");
+		shuffle();
+		drawCards(player, count);
+	}
+}
+
+void Deck::discard(Player* player)
+{
+	//player discards cards
+	for(auto it = cards.begin(); it != cards.end(); it++)
+	{
+		if ((*it)->inHand == player)
+		{
+			(*it)->inHand = 0;
+			(*it)->state = Card::IN_DISCARD_PILE;
 		}
 	}
 }

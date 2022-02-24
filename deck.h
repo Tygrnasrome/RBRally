@@ -18,7 +18,8 @@ public:
 	void placeHand(int x, int y, Player *player);
 	void draw(Player *player);
 	void placeCards();
-	void drawCards(Player* player);
+	void drawCards(Player* player, int owned);
+	void discard(Player* player);
 	void createDeck();
 	void shuffle();
 	void copyCard(Card *copy, Card* original);

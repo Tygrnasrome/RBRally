@@ -139,7 +139,8 @@ void Game::event(SDL_Event* e)
 //					if(!(*it)->dead)
 //						deck->drawCards(*it);
 //				}
-			deck->drawCards(activePlayer);
+			deck->discard(activePlayer);
+			deck->drawCards(activePlayer, 0);
 			break;
 
 		case SDLK_v:
