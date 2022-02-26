@@ -1,0 +1,222 @@
+
+----------------	 CARD DRAWING	---------------------------
+
+
+----------------	 CARD DRAWING	---------------------------
+
+
+----------------	 CARD DRAWING	---------------------------
+
+the deck was out of cards and has been shuffled
+----------------	 CARD DRAWING	---------------------------
+
+
+----------------	 CARD DRAWING	---------------------------
+
+the deck was out of cards and has been shuffled
+----------------	 CARD DRAWING	---------------------------
+
+
+----------------	 CARD DRAWING	---------------------------
+
+the deck was out of cards and has been shuffled
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 121 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 97 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 86 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 88 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 112 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 123 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 121 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 111 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 111 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 111 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 111 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 111 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 89 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 89 occupied 
+
+----------------	 BOARD MOVEMENT		---------------------------
+
+tile 174 occupied 
+tile 173 occupied 
+tile 176 occupied 
+tile 171 occupied 
+tile 178 occupied 
+tile 169 occupied 
+tile 179 occupied 
+tile 89 occupied 
+
+----------------	 LASER SHOOT		---------------------------
+
+
+----------------	 LASER SHOOT		---------------------------
+
+
+----------------	 LASER SHOOT		---------------------------
+
+
+----------------	 LASER SHOOT		---------------------------
+
+
+----------------	 LASER SHOOT		---------------------------
+
+
+----------------	 LASER SHOOT		---------------------------
+
+
+----------------	 LASER SHOOT		---------------------------
+
+
+----------------	 LASER SHOOT		---------------------------
+
+
+----------------	 LASER SHOOT		---------------------------
+
+
+----------------	 LASER SHOOT		---------------------------
+
+
+----------------	 LASER SHOOT		---------------------------
+
+
+----------------	 LASER SHOOT		---------------------------
+

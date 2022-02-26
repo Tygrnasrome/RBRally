@@ -4,14 +4,19 @@
 #include "grafika.h"
 #include "math.h"
 #include "map.h"
-class Map;
+#include "register.h"
 
+
+#include <array>
+
+class Map;
+class Register;
 class Player
 {
 public:
 	Player(int x, int y, int tile_num);
 	int x, y, red, g, b, revivePos, standingPos, health, damage, damageMax;
-	int registers[5];
+	std::array<Register*,5> registers;
 	void draw();
 	void update(int x, int y);
 	void move(int move, Map *map);
