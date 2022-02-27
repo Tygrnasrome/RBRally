@@ -30,6 +30,7 @@ public:
 	void rotatorMovement(Player *player);
 	void beltMovement(int beltType,Player *player);
 	bool laserShoot();
+	void clearBeams();
 	int map_w, map_h, map_size, x, y, initX, initY, addedSize;
 	int startingPos[12];
 	std::list<Map*> map;

@@ -219,6 +219,7 @@ void Map::draw()
 			sloupec = 0;
 		}
 		(*it)->draw(sloupec*TILE_SIZE + x ,rada*TILE_SIZE + y);
+		(*it)->update();
 		sloupec++;
 	}
 }
@@ -478,6 +479,7 @@ bool Map::laserShoot()
 										{
 											end = true;
 										}
+
 									}
 								if((*t)->occupied != 0)
 								{
@@ -491,6 +493,8 @@ bool Map::laserShoot()
 									{
 										end = true;
 									}
+									if(!end)
+										(*t)->addBeam(0);
 								}
 
 							}
@@ -504,8 +508,7 @@ bool Map::laserShoot()
 							if(n == testTil)
 							{
 								if(testTil != (*it)->number)
-									for(int i = 0; i != 4; i++)
-									{
+
 
 
 										for(int i = 0; i != 4; i++)
@@ -514,6 +517,7 @@ bool Map::laserShoot()
 											{
 												end = true;
 											}
+
 										}
 
 										if((*t)->occupied != 0)
@@ -522,10 +526,14 @@ bool Map::laserShoot()
 											(*t)->occupied->takeDamage();
 											end = true;
 										}
+										for(int i = 0; i != 4; i++)
+										{
 										if((*t)->walls[i] == Tile::WEST)
 										{
 											end = true;
 										}
+										if(!end)
+											(*t)->addBeam(1);
 									}
 							}
 							n++;
@@ -544,6 +552,7 @@ bool Map::laserShoot()
 										{
 											end = true;
 										}
+
 									}
 								if((*t)->occupied != 0)
 								{
@@ -557,6 +566,8 @@ bool Map::laserShoot()
 									{
 										end = true;
 									}
+									if(!end)
+										(*t)->addBeam(2);
 								}
 
 
@@ -578,6 +589,7 @@ bool Map::laserShoot()
 										{
 											end = true;
 										}
+
 									}
 								if((*t)->occupied != 0)
 								{
@@ -591,6 +603,8 @@ bool Map::laserShoot()
 									{
 										end = true;
 									}
+									if(!end)
+										(*t)->addBeam(3);
 								}
 
 
@@ -602,5 +616,13 @@ bool Map::laserShoot()
 					}
 				}
 			}
+}
+
+void Map::clearBeams()
+{
+	for(auto t = tile.begin(); t != tile.end(); t++)
+	{
+		(*t)->clearBeams();
+	}
 }
 

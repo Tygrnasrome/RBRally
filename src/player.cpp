@@ -758,146 +758,213 @@ bool Player::shoot(Map* map)
 	int tile = standingPos;
 	//test
 	int h = tile/map->map_w;
-	int w = (tile+dir)%map->map_w;
+	int w = tile%map->map_w;
+	int estW = (tile+dir)%map->map_w;
 	int n = 0;
 	while(1)
 	{
 		n = 0;
-		h = (tile+dir)/map->map_w;
-		w = (tile+dir)%map->map_w;
-		if(h < 0 || h > map->map_h || w == 0 || w == map->map_w-1)
-		{
-			return true;
-		}
+		h = (tile+dir)/map->map_h;
+		w =tile%map->map_w;
+		estW = (tile+dir)%map->map_w;
+
 		switch (facing) {
 		case NORTH:
 			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
 			{
 				if(n == tile)
 				{
+					if(tile == standingPos)
 					for(int i = 0; i != 4; i++)
 					{
+
 						if((*t)->walls[i] == Tile::NORTH)
 						{
 							return true;
 						}
 					}
 					if(tile != standingPos)
+					{
+
 						for(int i = 0; i != 4; i++)
 						{
 							if((*t)->walls[i] == Tile::SOUTH)
 							{
 								return true;
 							}
+
 						}
+						(*t)->addBeam(0);
+					}
 					if(tile != standingPos)
-						if((*t)->occupied != 0 && (*t)->occupied != this)
+						if((*t)->occupied != nullptr && (*t)->occupied != this)
 						{
 							(*t)->occupied->takeDamage();
 							return true;
 						}
+					for(int i = 0; i != 4; i++)
+					{
+
+						if((*t)->walls[i] == Tile::NORTH)
+						{
+							return true;
+						}
+					}
+
+
 				}
 				n++;
 			}
-			tile += dir;
 			break;
 		case EAST:
 			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
 			{
 				if(n == tile)
 				{
+
+					if(tile == standingPos)
 					for(int i = 0; i != 4; i++)
 					{
+
 						if((*t)->walls[i] == Tile::EAST)
 						{
 							return true;
 						}
 					}
 					if(tile != standingPos)
+					{
+
 						for(int i = 0; i != 4; i++)
 						{
 							if((*t)->walls[i] == Tile::WEST)
 							{
 								return true;
 							}
+
 						}
+						(*t)->addBeam(1);
+					}
 					if(tile != standingPos)
-						if((*t)->occupied != 0 && (*t)->occupied != this)
+						if((*t)->occupied != nullptr && (*t)->occupied != this)
 						{
 							(*t)->occupied->takeDamage();
 							return true;
 						}
+					for(int i = 0; i != 4; i++)
+					{
 
+						if((*t)->walls[i] == Tile::EAST)
+						{
+							return true;
+						}
+					}
 				}
 				n++;
 			}
-			tile += dir;
 			break;
 		case SOUTH:
 			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
 			{
 				if(n == tile)
 				{
+					if(tile == standingPos)
 					for(int i = 0; i != 4; i++)
 					{
+
 						if((*t)->walls[i] == Tile::SOUTH)
 						{
 							return true;
 						}
 					}
 					if(tile != standingPos)
+					{
+
 						for(int i = 0; i != 4; i++)
 						{
 							if((*t)->walls[i] == Tile::NORTH)
 							{
 								return true;
 							}
+
 						}
+						(*t)->addBeam(2);
+					}
 					if(tile != standingPos)
-						if((*t)->occupied != 0 && (*t)->occupied != this)
+						if((*t)->occupied != nullptr && (*t)->occupied != this)
 						{
 							(*t)->occupied->takeDamage();
 							return true;
 						}
+					for(int i = 0; i != 4; i++)
+					{
 
+						if((*t)->walls[i] == Tile::SOUTH)
+						{
+							return true;
+						}
+					}
 				}
 				n++;
 			}
-			tile += dir;
 			break;
 		case WEST:
 			for(auto t = map->tile.begin(); t != map->tile.end(); t++)
 			{
 				if(n == tile)
 				{
+					if(tile == standingPos)
 					for(int i = 0; i != 4; i++)
 					{
+
 						if((*t)->walls[i] == Tile::WEST)
 						{
 							return true;
 						}
 					}
 					if(tile != standingPos)
+					{
+
 						for(int i = 0; i != 4; i++)
 						{
 							if((*t)->walls[i] == Tile::EAST)
 							{
 								return true;
 							}
+
 						}
+						(*t)->addBeam(3);
+					}
 					if(tile != standingPos)
-						if((*t)->occupied != 0 && (*t)->occupied != this)
+						if((*t)->occupied != nullptr && (*t)->occupied != this)
 						{
 							(*t)->occupied->takeDamage();
 							return true;
 						}
+					for(int i = 0; i != 4; i++)
+					{
+
+						if((*t)->walls[i] == Tile::WEST)
+						{
+							return true;
+						}
+					}
 
 				}
 				n++;
 			}
-			tile += dir;
+
 			break;
 		}
+		//test map end
+		if(h < 0 || h > map->map_h )
+		{
+			return true;
+		}
+		if((w == 0 && dir == -1) || (estW == 0 && dir == 1))
+		{
+			return true;
+		}
+		tile += dir;
 	}
 
 }

@@ -4,6 +4,9 @@
 #include "grafika.h"
 #include "texture.h"
 #include "player.h"
+#include "laserbeam.h"
+
+#include <list>
 
 #define TILE_SIZE 50
 #define WALL_SIZE 5
@@ -31,6 +34,10 @@ public:
 	void addWall(int num, int facing);
 	void addLaser(int num, int facing);
 	void addTexture(Texture *tex);
+
+	void clearBeams();
+	void addBeam(int dir);
+	void update();
 	int getWall(int id);
 	int getLaser(int id);
 	typedef enum{
@@ -72,6 +79,7 @@ public:
 	int number;
 	int starting_pos_num = 0;
 	int tile_size, x, y;
+	std::list<LaserBeam*> laserBeam;
 };
 
 #endif // TILE_H

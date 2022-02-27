@@ -64,6 +64,11 @@ void Tile::draw(int x, int y)
 		return;
 	}
 
+
+	for(auto it = laserBeam.begin(); it != laserBeam.end(); it++)
+	{
+		(*it)->draw();
+	}
 	laser(x,y);
 	wall(x,y);
 	border(x,y);
@@ -173,6 +178,29 @@ void Tile::belt(int x, int y)
 		break;
 	}
 
+}
+
+void Tile::addBeam(int dir)
+{
+	laserBeam.push_back(new LaserBeam(x,y,dir));
+}
+
+void Tile::clearBeams()
+{
+	for(auto it = laserBeam.begin(); it != laserBeam.end(); it++)
+	{
+		delete *it;
+		it = laserBeam.erase(it);
+		it--;
+	}
+}
+
+void Tile::update()
+{
+	for(auto it = laserBeam.begin(); it != laserBeam.end(); it++)
+	{
+		(*it)->place(x,y);
+	}
 }
 void Tile::fast_belt(int x, int y)
 {

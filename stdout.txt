@@ -1,222 +1,44 @@
-
-----------------	 CARD DRAWING	---------------------------
-
-
-----------------	 CARD DRAWING	---------------------------
-
-
-----------------	 CARD DRAWING	---------------------------
-
-the deck was out of cards and has been shuffled
-----------------	 CARD DRAWING	---------------------------
-
-
-----------------	 CARD DRAWING	---------------------------
-
-the deck was out of cards and has been shuffled
-----------------	 CARD DRAWING	---------------------------
-
-
-----------------	 CARD DRAWING	---------------------------
-
-the deck was out of cards and has been shuffled
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 121 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 97 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 86 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 88 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 112 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 123 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 121 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 111 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 111 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 111 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 111 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 111 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 89 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 89 occupied 
-
-----------------	 BOARD MOVEMENT		---------------------------
-
-tile 174 occupied 
-tile 173 occupied 
-tile 176 occupied 
-tile 171 occupied 
-tile 178 occupied 
-tile 169 occupied 
-tile 179 occupied 
-tile 89 occupied 
-
-----------------	 LASER SHOOT		---------------------------
-
-
-----------------	 LASER SHOOT		---------------------------
-
-
-----------------	 LASER SHOOT		---------------------------
-
-
-----------------	 LASER SHOOT		---------------------------
-
-
-----------------	 LASER SHOOT		---------------------------
-
-
-----------------	 LASER SHOOT		---------------------------
-
-
-----------------	 LASER SHOOT		---------------------------
-
-
-----------------	 LASER SHOOT		---------------------------
-
-
-----------------	 LASER SHOOT		---------------------------
-
-
-----------------	 LASER SHOOT		---------------------------
-
-
-----------------	 LASER SHOOT		---------------------------
-
-
-----------------	 LASER SHOOT		---------------------------
+0: 0 42
+1: 64 31
+2: 115 32
+3: 171 30
+4: 225 29
+5: 277 27
+6: 327 32
+7: 383 32
+8: 440 17
+9: 482 32
+10: 539 29
+11: 592 29
+12: 646 56
+13: 725 33
+14: 780 38
+15: 842 31
+16: 896 40
+17: 957 34
+18: 1014 35
+19: 1073 36
+20: 1134 35
+21: 1194 39
+22: 1259 50
+23: 1332 37
+24: 1388 35
+25: 1447 30
+26: 1503 12
+27: 1543 21
+28: 1595 9
+29: 1629 9
+30: 1662 27
+31: 1713 35
+32: 1771 33
+33: 1830 26
+34: 1859 22
+35: 1884 34
+36: 1945 30
+37: 2001 25
+38: 2054 31
+39: 2113 28
+40: 2167 26
+
+----------------	 LASER AND PLAYER SHOOT		---------------------------
 
