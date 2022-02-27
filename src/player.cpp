@@ -10,6 +10,10 @@ Player::Player(int x, int y, int tile_num)
 	health = 3;
 	damage = 0;
 	damageMax = 10;
+	for (int i = 0; i<5; i++)
+	{
+		registers[i] = new Register();
+	}
 }
 
 void Player::draw()

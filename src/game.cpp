@@ -139,8 +139,8 @@ void Game::update()
 				(*p)->update((*t)->x + TILE_SIZE/2,(*t)->y + TILE_SIZE/2);
 				for(auto til = map->tile.begin(); til != map->tile.end(); til++)
 				{
-					if((*til)->occupied == *p && (*til) != (*t) || (*til)->occupied == *p && (*p)->dead)
-						(*til)->occupied = 0;
+					if(((*til)->occupied == *p && (*til) != (*t)) || ((*til)->occupied == *p && (*p)->dead))
+						(*til)->occupied = nullptr;
 				}
 			}
 			num++;
@@ -149,7 +149,14 @@ void Game::update()
 	}
 	deck->placeDeck(map->x + map->map_w*TILE_SIZE + 10, map->y);
 	deck->placeDiscardPile(map->x + map->map_w*TILE_SIZE + 10, map->y + 200);
-
+	for (int i = 0 ; i<5 ; i++)
+	{
+		int x = obrazovka->w/2 - 5*90 + i*180;
+		int y = obrazovka->h - 250;
+		activePlayer->registers[i]->place(x,y);
+	}
+	if(phase != SHOOT)
+		map->clearBeams();
 }
 void Game::event(SDL_Event* e)
 {
@@ -160,27 +167,27 @@ void Game::event(SDL_Event* e)
 		{
 		/* změna building_state */
 		case SDLK_LEFT:
-
+			phase = REGISTER_MOVE;
 			activePlayer->facing = Player::WEST;
 
 			break;
 		case SDLK_UP:
-
+			phase = REGISTER_MOVE;
 			activePlayer->facing = Player::NORTH;
 
 			break;
 		case SDLK_RIGHT:
-
+			phase = REGISTER_MOVE;
 			activePlayer->facing = Player::EAST;
 
 			break;
 		case SDLK_DOWN:
-
+			phase = REGISTER_MOVE;
 			activePlayer->facing = Player::SOUTH;
 
 			break;
 		case SDLK_r:
-
+			phase = REVIVE;
 			for(auto it = player.begin(); it != player.end(); it++)
 			{
 				if((*it)->dead)
@@ -190,6 +197,7 @@ void Game::event(SDL_Event* e)
 			break;
 		case SDLK_b:
 			printf("\n----------------	 BOARD MOVEMENT		---------------------------\n\n");
+			phase = BOARD_MOVEMENT;
 			for(auto it = player.begin(); it != player.end(); it++)
 			{
 
@@ -200,7 +208,7 @@ void Game::event(SDL_Event* e)
 
 		case SDLK_l:
 			printf("\n----------------	 LASER AND PLAYER SHOOT		---------------------------\n\n");
-			map->clearBeams();
+			phase = SHOOT;
 			map->laserShoot();
 			for(auto it = player.begin(); it != player.end(); it++)
 			{
@@ -228,10 +236,10 @@ void Game::event(SDL_Event* e)
 			//				}
 			deck->discard(activePlayer);
 			deck->drawCards(activePlayer, 0);
-			phase = PROGRAMMING;
+			phase = DRAWING;
 			break;
 		case SDLK_w:
-
+			phase = REGISTER_MOVE;
 			activePlayer->move(1,map);
 
 			break;
