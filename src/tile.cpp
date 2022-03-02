@@ -8,7 +8,7 @@ Tile::Tile()
 	tile_size = TILE_SIZE;
 	occupied = 0;
 }
-void Tile::addTexture(Texture *tex)
+void Tile::addTexture(TexturePack *tex)
 {
 	this->tex = tex;
 }
@@ -86,7 +86,6 @@ void Tile::border(int x, int y)
 }
 void Tile::empty(int x, int y)
 {
-
 	tex->texEmpty->place(x,y);
 	tex->texEmpty->draw(0);
 }

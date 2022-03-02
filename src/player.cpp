@@ -715,7 +715,7 @@ bool Player::move(int mov, Map *map, Facing tmpFacing)
 
 }
 
-void Player::revive()
+bool Player::revive()
 {
 	if (health>0)
 	{
@@ -724,7 +724,9 @@ void Player::revive()
 		facing = NORTH;
 		health--;
 		damage = 2;
+		return true;
 	}
+	return false;
 
 }
 bool Player::testDamage()

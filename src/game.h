@@ -16,8 +16,11 @@ public:
 	virtual void event(SDL_Event* e);
 	virtual void keystate(Uint8* kst);
 	void announcePhase();
-
+	void playerMove();
+	void boardMove();
+	void phaseEvent();
 	int playerNum = 9;
+	int activeRegister, movingPlayer;
 	typedef enum{
 		DRAWING,
 		PROGRAMMING,
@@ -36,7 +39,7 @@ public:
 	std::list<Player*> player;
 	Deck *deck;
 	Player* activePlayer;
-	Pismo *announcement;
+	Pismo *announcement, *nxtAnnouncement;
 	Obrazovka* obrazovka = Obrazovka::instance();
 
 };

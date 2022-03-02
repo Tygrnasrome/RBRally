@@ -9,7 +9,7 @@ Map::Map()
 	{
 		startingPos[i] = 0;
 	}
-	texture = new Texture();
+	textures = new TexturePack();
 	for (int i = 0;i<MAP_SIZE*MAP_SIZE;i++)
 	{
 		tiles[i] = new Tile();
@@ -17,7 +17,7 @@ Map::Map()
 		{
 			tiles[i]->lasers[c] = Tile::NONE;
 			tiles[i]->walls[c] = Tile::NONE;
-			tiles[i]->addTexture(texture);
+			tiles[i]->addTexture(textures);
 
 		}
 	}
@@ -30,7 +30,7 @@ Map::Map()
 
 Map::Map(const char*fn)
 {
-	texture = new Texture();
+	textures = new TexturePack();
 	for (int i = 0;i<MAP_SIZE*MAP_SIZE;i++)
 	{
 		tiles[i] = new Tile();
@@ -38,7 +38,7 @@ Map::Map(const char*fn)
 		{
 			tiles[i]->lasers[c] = Tile::NONE;
 			tiles[i]->walls[c] = Tile::NONE;
-			tiles[i]->addTexture(texture);
+			tiles[i]->addTexture(textures);
 
 		}
 	}

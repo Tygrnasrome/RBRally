@@ -49,7 +49,8 @@ void Card::draw()
 		tex->texHidden->draw(0);
 	}
 }
-void Card::addTexture(Texture *tex)
+
+void Card::addTexture(TexturePack *tex)
 {
 	this->tex = tex;
 }
@@ -58,4 +59,49 @@ void Card::place(int x, int y)
 {
 	this->x = x;
 	this->y = y;
+}
+
+void Card::executeKlik(int x, int y, int buttonType)
+{
+	if (x > this->x && x < (this->x +tex->texMove->w) && y > this->y && y < (this->y +tex->texMove->h))
+	{
+		if(!buttonType)
+			enlarge();
+		if(buttonType)
+			klik();
+	}
+}
+
+void Card::enlarge()
+{
+	hidden = true;
+}
+
+void Card::klik()
+{
+	if(inHand != nullptr && state == IN_REGISTER)
+		for(int i = 0 ; i<5 ; i++)
+		{
+			if(inHand->registers[i]->full == this)
+			{
+				state = IN_HAND;
+				inHand->registers[i]->full = nullptr;
+				i= 5;
+			}
+		}else
+
+		if(inHand != nullptr && state == IN_HAND)
+			for(int i = 0 ; i<5 ; i++)
+			{
+				if(inHand->registers[i]->full == nullptr)
+				{
+					state = IN_REGISTER;
+					x = inHand->registers[i]->x;
+					y = inHand->registers[i]->y;
+					inHand->registers[i]->full = this;
+					i= 5;
+				}
+			}
+
+
 }

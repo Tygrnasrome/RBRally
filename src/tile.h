@@ -2,7 +2,7 @@
 #define TILE_H
 
 #include "grafika.h"
-#include "texture.h"
+#include "texturepack.h"
 #include "player.h"
 #include "laserbeam.h"
 
@@ -10,6 +10,7 @@
 
 #define TILE_SIZE 50
 #define WALL_SIZE 5
+class LaserBeam;
 class Player;
 class Tile
 {
@@ -33,7 +34,7 @@ public:
 	void setFacing(int num);
 	void addWall(int num, int facing);
 	void addLaser(int num, int facing);
-	void addTexture(Texture *tex);
+	void addTexture(TexturePack *tex);
 
 	void clearBeams();
 	void addBeam(int dir);
@@ -71,7 +72,7 @@ public:
 	}Facing;
 
 	Player *occupied;
-	Texture *tex;
+	TexturePack *tex;
 	Type type;
 	Facing facing;
 	Facing walls[4];

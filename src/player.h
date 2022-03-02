@@ -23,7 +23,7 @@ public:
 
 	void rotate(int rotation);
 	bool shoot(Map *map);
-	void revive();
+	bool revive();
 	void takeDamage();
 	bool testDamage();
 
@@ -40,6 +40,8 @@ public:
 	void boardMove(int move, Map *map, int tileFacing);
 	bool dead = false;
 	bool interrupted = false;
+	bool commenceShutdown = false;
+	bool shutdown = false;
 	bool move(int mov, Map *map, Facing tmpFacing);
 private:
 	bool testWallCollision(int move, Map *map, int type);

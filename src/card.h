@@ -3,6 +3,8 @@
 
 #include "texture.h"
 #include "player.h"
+
+class Player;
 class Card
 {
 public:
@@ -21,10 +23,13 @@ public:
 	Card();
 	void place(int x, int y);
 	void draw();
-	void addTexture(Texture *tex);
+	void addTexture(TexturePack *tex);
+	void executeKlik(int x, int y, int buttonType);
+	void enlarge();
+	void klik();
 	Type type;
 	State state;
-	Texture *tex;
+	TexturePack *tex;
 	Player* inHand;
 	int variant, power, x, y;
 	bool hidden = false;

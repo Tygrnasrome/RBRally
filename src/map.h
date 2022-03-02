@@ -1,7 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 #include "grafika.h"
-#include "texture.h"
+#include "texturepack.h"
 #include "tile.h"
 #include "player.h"
 
@@ -36,7 +36,7 @@ public:
 	std::list<Map*> map;
 	std::array<Tile*,MAP_SIZE*MAP_SIZE> tiles;
 	std::list<Tile*> tile;
-	Texture *texture;
+	TexturePack *textures;
 
 
 

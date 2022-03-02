@@ -2,7 +2,7 @@
 
 Deck::Deck()
 {
-	tex = new Texture();
+	tex = new TexturePack();
 	moveOneC = moveTwoC = moveThreeC = backUpC = rotateLC = rotateRC =uturnC = 3;
 	size = moveOneC + moveTwoC + moveThreeC + backUpC + rotateLC + rotateRC + uturnC;
 
@@ -115,6 +115,14 @@ void Deck::createDeck()
 	shuffle();
 }
 
+void Deck::executeKlik(int x, int y, int buttonType)
+{
+	for(auto it = cards.begin(); it != cards.end(); it++)
+	{
+		(*it)->executeKlik(x, y, buttonType);
+	}
+}
+
 void Deck::shuffle()
 {
 	int rand, number, inDeckSize, tmpSize;
@@ -209,7 +217,7 @@ void Deck::draw(Player* player)
 	for(auto it = cards.begin(); it != cards.end(); it++)
 	{
 
-		if((*it)->inHand == player)
+		if((*it)->inHand == player && (*it)->state == Card::IN_HAND)
 		{
 			number++;
 		}
@@ -217,18 +225,16 @@ void Deck::draw(Player* player)
 	for(auto it = cards.begin(); it != cards.end(); it++)
 	{
 
-		if((*it)->inHand == player)
+		if((*it)->inHand == player && (*it)->state == Card::IN_HAND)
 		{
-			(*it)->x = obrazovka->w/2 - (number * 40) + (i*80);
-			(*it)->y = obrazovka->h - 250;
-			(*it)->draw();
+			(*it)->x = obrazovka->w/5 - (number*30) + (i*60);
+			(*it)->y = obrazovka->h/2 - 250;
 			(*it)->hidden = false;
 			i++;
 		}
-		if((*it)->inHand == 0)
-		{
-			(*it)->draw();
-		}
+
+		(*it)->draw();
+
 	}
 }
 
@@ -247,7 +253,6 @@ void Deck::placeCards()
 			(*it)->place(dx,dy+50);
 			break;
 		case Card::IN_REGISTER:
-			(*it)->place(dx,dy+100);
 			break;
 		default:
 			break;
@@ -278,16 +283,27 @@ void Deck::drawCards(Player* player, int owned)
 	}
 }
 
-void Deck::discard(Player* player)
+void Deck::discard(Player* player, int type)
 {
 	//player discards cards
 	for(auto it = cards.begin(); it != cards.end(); it++)
 	{
-		if ((*it)->inHand == player)
-		{
-			(*it)->inHand = 0;
-			(*it)->state = Card::IN_DISCARD_PILE;
-		}
+		if(type == 0)
+			if ((*it)->inHand == player && (*it)->state == Card::IN_HAND)
+			{
+				(*it)->inHand = 0;
+				(*it)->state = Card::IN_DISCARD_PILE;
+			}
+		if(type == 1)
+			if ((*it)->inHand == player)
+			{
+				if((*it)->state == Card::IN_REGISTER)
+					for(int i = 0 ; i < 5 ; i++)
+						if(player->registers[i]->full == *it && player->registers[i]->full)
+							player->registers[i]->full = nullptr;
+				(*it)->inHand = 0;
+				(*it)->state = Card::IN_DISCARD_PILE;
+			}
 	}
 }
 
@@ -303,5 +319,29 @@ void Deck::placeDiscardPile(int x, int y)
 }
 void Deck::placeRegister(int x, int y, int num)
 {
-
+	switch (num) {
+	case 0:
+		reg1x = x;
+		reg1y = y;
+		break;
+	case 1:
+		reg2x = x;
+		reg2y = y;
+		break;
+	case 2:
+		reg3x = x;
+		reg3y = y;
+		break;
+	case 3:
+		reg4x = x;
+		reg4y = y;
+		break;
+	case 4:
+		reg5x = x;
+		reg5y = y;
+		break;
+	default:
+		printf("warning: wrong register number: %d\n", num);
+		break;
+	}
 }
